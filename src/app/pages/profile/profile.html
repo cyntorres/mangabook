@@ -1,0 +1,94 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h3 class="mb-4">PERFIL</h3>
+
+          <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general">GENERAL</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#education">OTROS</button>
+            </li>
+          </ul>
+
+          <div class="tab-content mt-4" id="profileTabContent">
+            <div class="tab-pane fade show active" id="general">
+              <div class="row">
+                <div class="col-md-3 text-center mb-4">
+                  <div class="profile-img-wrapper mb-3">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d" alt="Profile"
+                      class="rounded-circle profile-img">
+                    <div class="upload-overlay">
+                      <i class="bi bi-camera-fill"></i>
+                    </div>
+                  </div>
+                  <button class="btn btn-outline-primary btn-sm">CAMBIAR FOTO</button>
+                </div>
+
+                <div class="col-md-9">
+                  <form form [formGroup]="formPerfil" (ngSubmit)="guardarCambios()" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label">NOMBRE</label>
+                        <input class="form-control" formControlName="nombre"
+                          [class.is-invalid]="formPerfil.get('nombre')?.touched && formPerfil.get('nombre')?.invalid">
+                        <div class="invalid-feedback">El nombre es obligatorio.</div>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">USUARIO</label>
+                        <input class="form-control" formControlName="usuario"
+                          [class.is-invalid]="formPerfil.get('usuario')?.touched && formPerfil.get('usuario')?.invalid">
+
+                        <div class="invalid-feedback">El usuario es obligatorio.</div>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">TIPO USUARIO</label>
+                        <input class="form-control" formControlName="tipo">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label">EMAIL</label>
+                        <input class="form-control" formControlName="email">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label fw-bold">CONTRASEÑA</label>
+
+                        <div class="input-group">
+                          <input [type]="mostrarPassword ? 'text' : 'password'" class="form-control"
+                            formControlName="password"
+                            [class.is-invalid]="formPerfil.get('password')?.touched && formPerfil.get('password')?.invalid">
+
+                          <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()">
+                            {{ mostrarPassword ? 'Ocultar' : 'Mostrar' }}
+                          </button>
+                        </div>
+
+                        <div class="invalid-feedback" *ngIf="formPerfil.get('password')?.errors?.['required']">
+                          La contraseña es obligatoria.
+                        </div>
+
+                        <div class="invalid-feedback" *ngIf="formPerfil.get('password')?.errors?.['pattern']">
+                          Debe incluir al menos una mayúscula y un número.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-4 gap-2">
+                      <div class="d-grid">
+                        <button type="submit" class="btn btn-primary"
+                          [disabled]="formPerfil.invalid || formPerfil.pristine">GUARDAR CAMBIOS</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

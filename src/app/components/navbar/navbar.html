@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <!-- Marca / Título -->
+        <a class="navbar-brand" routerLink="/">MANGABOOK</a>
+
+        <!-- Botón hamburguesa (para móviles) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- colapsable del navbar(Oculta el menú de navegación(enlaces, etc.) para móviles -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Menú de navegación -->
+            <ul class="navbar-nav ms-auto me-3">
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'comics']">CÓMICS</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'mangas']">MANGAS</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'libros']">LIBROS</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/categoria', 'novelas']">NOVELAS</a></li>
+                
+                <!-- ngIf(CONDICIÓN):  SI LA CONDICIÓN ES VERDADERA, ENTONCES, AÑADE UN ELEMENTRO -->
+                <!-- ngIf(CONDICIÓN):  SI LA CONDICIÓN ES FALSA, ENTONCES, ELIMINA(OCULTA) UN ELEMENTO -->
+
+                <!-- SI HAY UNA SESIÓN ACTIVA, ENTONCES, AÑADE OTRO NAV-ITEM  -->
+                <ng-container *ngIf="sesion?.logueado">
+
+                    <!-- SI INICIA SESIÓN COMO ADMIN: SE MUESTRA EL NAV-ITEM PANEL -->
+                    <li class="nav-item" *ngIf="sesion?.tipo === 'admin'"><a class="nav-link" routerLink="/panel">PANEL</a></li>
+                    <!-- SI INICIA SESIÓN COMO OTRO USUARIO: SE MUESTRA EL NAV-ITEM PERFIL -->
+                    <li class="nav-item" *ngIf="sesion?.tipo !== 'admin'"><a class="nav-link" routerLink="/perfil">PERFIL</a></li>
+                    <!-- CIERRE DE SESIÓN -->
+                    <li class="nav-item"><a class="nav-link text-danger" (click)="cerrarSesion()" style="cursor: pointer;">CERRAR SESIÓN</a></li>
+                </ng-container>
+
+                <!-- SI NO HAY SESIÓN ACTIVA ESCONDE LOS NAV-ITEM DE SESIÓN Y AÑADE ESTOS -->
+                <ng-container *ngIf="!sesion?.logueado">
+                    <li class="nav-item"><a class="nav-link" routerLink="/registro">REGISTRO</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="/login">INICIAR SESIÓN</a></li>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+</nav>

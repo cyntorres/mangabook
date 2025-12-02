@@ -1,0 +1,65 @@
+/* Variables para facilitar cambios de color */
+:root {
+    --primary-color: #333; /* Color principal del texto */
+    --accent-color: #f7a837; /* Color naranja/dorado del acento (HOME) */
+    --bg-color: #fff; /* Fondo blanco de la barra */
+    --border-color: #eee; /* Borde inferior sutil */
+}
+
+/* 1. Contenedor Principal (La caja de la Navbar) */
+.navbar {
+    display: flex; /* Permite alinear el logo y los enlaces horizontalmente */
+    justify-content: space-between; /* Empuja el logo a la izquierda y los enlaces a la derecha */
+    align-items: center;
+    background-color: var(--bg-color);
+    padding: 20px 50px; /* Espacio interno, arriba/abajo y a los lados */
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra sutil para levantar la barra */
+    /*border-bottom: 1px solid var(--border-color); /* Borde inferior muy ligero */
+}
+
+/* 2. Estilo del LOGO */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 1000; /* Negrita/Bold para que destaque */
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 3. Lista de Enlaces */
+.nav-links {
+    list-style: none; /* Elimina los puntos predeterminados */
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* 4. Ítems de la Lista */
+.nav-links li {
+    margin-left: 30px; /* Espacio entre cada enlace */
+}
+
+/* 5. Estilo de los Enlaces (Texto) */
+.nav-links a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: var(--primary-color);
+    font-size: 0.9rem; /* Un poco más pequeño que el logo */
+    font-weight: 500; /* Peso medio */
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease; /* Suaviza el cambio de color al pasar el ratón */
+}
+
+/* 6. Enlace Activo (HOME en la imagen) */
+.nav-links a.active {
+    color: var(--accent-color); /* Aplica el color naranja/dorado */
+    font-weight: 600; /* Opcional: hacerlo un poco más grueso */
+}
+
+/* 7. Efecto Hover (al pasar el ratón) */
+.nav-links a:hover {
+    color: var(--accent-color); /* Todos cambian a naranja al pasar el ratón */
+}
+
+.profile-icon{
+  height: 40px;
+}

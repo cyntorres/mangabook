@@ -1,0 +1,109 @@
+<main class="container my-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <h2>PANEL DE ADMINISTRACIÓN</h2>
+                    </div>
+
+                    <div class="card-header text-white p-3" [ngClass]="isEditMode ? 'bg-warning' : 'bg-secondary'">
+                        <h4 class="mb-0">
+                            <i class="bi p-3" [ngClass]="isEditMode ? 'bi-pencil-square' : 'bi-plus-circle-fill'"></i>{{isEditMode ? 'Editar Producto' : 'Agregar Producto' }}
+                        </h4>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <form #productForm="ngForm" (ngSubmit)="onSubmit()" class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="nombreProducto">NOMBRE DEL PRODUCTO</label>
+                                <input type="text" class="form-control" id="nombreProducto" name="nombre" [(ngModel)]="newProduct.nombre" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="categoria">CATEGORÍA</label>
+                                <select class="form-select" id="categoria" name="categoria" [(ngModel)]="newProduct.categoria" placeholder="Categoría" required>
+                                    <option value="" disabled selected>SELECCIONA UNA CATEGORÍA</option>
+
+                                    <!-- CATEGORÍAS ESTATICAS -->
+                                    <option value="Comics">Cómics</option>
+                                    <option value="Mangas">Mangas</option>
+                                    <option value="Libros">Libros</option>
+                                    <option value="Novelas">Novelas</option>
+
+                                    <!-- OPCIÓN DE CATEGORÍAS DINAMICAS -->
+                                    <!-- <option *ngFor="let cat of categoriasDisponibles" [value]="cat">{{ cat }}</option>-->
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="precio">PRECIO (CLP)</label>
+                                <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="newProduct.precio" required min="0">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label" for="precio">STOCK</label>
+                                <input type="number" class="form-control" id="stock" name="stock" [(ngModel)]="newProduct.stock" required min="0">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label" for="precio">URL DE LA IMAGEN</label>
+                                <input type="text" class="form-control" id="urlImagen" name="imagen" [(ngModel)]="newProduct.imagen" required>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-end pt-3">
+                                <button *ngIf="isEditMode" type="button" class="btn btn-outline-secondary me-2 px-4" (click)="onCancelEdit()">
+                                    <i class="bi bi-x-circle-fill me-2"></i> Cancelar
+                                </button>
+
+                                <button type="submit" class="btn px-4" [ngClass]="isEditMode ? 'btn-warning text-dark' : 'btn-outline-primary'" [disabled]="!productForm.valid">
+                                    <i class="bi me-2" [ngClass]="isEditMode ? 'bi-save' : 'bi-plus-circle-fill'"></i>{{ isEditMode ? 'Guardar Cambios' : 'Agregar Producto' }}
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="table-responsive my-5">
+                            <table class="table table-sm align-middle table-borderless table-hover">
+                                <thead class="text-uppercase border-bottom">
+                                    <tr>
+                                        <th scope="col" class="fw-normal text-secondary">ID</th>
+                                        <th scope="col" class="fw-normal text-secondary">Nombre</th>
+                                        <th scope="col" class="fw-normal text-secondary">Categoría</th>
+                                        <th scope="col" class="fw-normal text-secondary text-end">Precio</th>
+                                        <th scope="col" class="fw-normal text-secondary text-center">Stock</th>
+                                        <th scope="col" class="fw-normal text-secondary text-center">Miniatura</th>
+                                        <th scope="col" class="fw-normal text-secondary text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let producto of products; let i = index">
+                                        <td>{{ producto.id }}</td>
+                                        <td class="text-nowrap">{{ producto.nombre }}</td>
+                                        <td class="text-nowrap">{{ producto.categoria }}</td>
+                                        <td class="text-end fw-bold">${{ producto.precio | number : '1.0-0' }}</td>
+                                        <td class="text-center">{{ producto.stock }}</td>
+                                        <td class="text-center">
+                                            <img [src]="producto.imagen" alt="{{ producto.nombre }}"
+                                                class="img-thumbnail product-thumb border-0">
+                                        </td>
+                                        <td class="text-center text-nowrap">
+                                            <button type="button" class="btn btn-sm btn-outline-primary me-2" title="Editar"
+                                                (click)="onEdit(producto)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+
+                                            <button type="button" class="btn btn-sm btn-outline-danger" title="Eliminar"
+                                                (click)="onDelete(i)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

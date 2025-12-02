@@ -1,0 +1,89 @@
+<main class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <!-- Asegúrate de que 'categoria' existe en el TS -->
+            <small class="text-uppercase text-muted fw-bold fs-5 me-2">{{ categoria }}</small>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <!-- 'productos' debe ser un array definido en el TS -->
+            <span class="text-muted me-3">{{ productos.length }} productos</span>
+
+            <div class="dropdown me-2">
+                <button
+                    class="btn btn-sm btn-outline-secondary custom-dropdown-btn" 
+                    type="button"
+                    id="dropdownOrden"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    <!-- 'criterioOrdenActual' debe existir en el TS -->
+                    {{ criterioOrdenActual }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownOrden">
+                    <li><a class="dropdown-item" (click)="ordenarProductos('reciente')">MÁS RECIENTE</a></li>
+                    <li><a class="dropdown-item" (click)="ordenarProductos('popular')">MÁS ANTIGUO</a></li>
+                    <li><a class="dropdown-item" (click)="ordenarProductos('nombre')">ORDENAR POR TÍTULO</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        
+        <!-- === INICIO: *ngFor TRADICIONAL === -->
+        
+        <!-- Usamos *ngIf para mostrar la lista SOLO si hay productos -->
+        <ng-container *ngIf="productos.length > 0">
+            <!-- Iteramos la lista de productos usando *ngFor -->
+            <div class="col" *ngFor="let producto of productos">
+                <a href="#" class="text-decoration-none text-dark">
+                    <div class="card border-0 product-card-angular">
+                        <div class="img-container">
+                            <img [src]="producto.imagen || 'assets/img/default.jpg'" class="card-img-top webtoon-img"
+                                [alt]="producto.titulo">
+                            
+                            <!-- *ngIf para "Nuevo" -->
+                            <span *ngIf="producto.esNuevo"
+                                class="position-absolute top-0 start-0 m-2 px-2 py-1 badge bg-primary rounded-pill z-10">Nuevo
+                                Ep</span>
+                            
+                            <!-- *ngIf para "Completo" -->
+                            <span *ngIf="!producto.esNuevo && producto.esCompleto"
+                                class="position-absolute top-0 start-0 m-2 px-2 py-1 badge bg-success rounded-pill z-10">Completo</span>
+                        </div>
+
+                        <div class="px-2 pt-2 card-body-custom">
+                            <div class="text-muted small">{{ producto.categoria || 'Sin categoría' }}</div>
+
+                            <strong class="d-block text-truncate product-title">{{ producto.nombre || 'Sin nombre' }}</strong>
+
+                            <div class="text-dark small fw-bold mt-1">
+                                <!-- El pipe 'currency' necesita estar disponible en el CommonModule -->
+                                {{ producto.precio | currency:'CLP':'symbol':'1.0-0' }}
+                            </div>
+
+                            <div class="d-flex justify-content-start align-items-center mt-2 small text-muted">
+                                <!-- *ngIf para 'likes' -->
+                                <ng-container *ngIf="producto.likes">
+                                    <i class="bi bi-heart-fill text-danger me-1"></i>
+                                    <span>{{ producto.likes | number }}</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </ng-container>
+
+        <!-- === Manejo del caso VACÍO (Reemplazo de @empty) === -->
+        
+        <!-- Usamos *ngIf para mostrar este mensaje SOLO si NO hay productos -->
+        <div class="col-12 text-center text-muted py-5" *ngIf="productos.length === 0">
+            <p>No hay productos en esta categoría.</p>
+        </div>
+        
+        <!-- === FIN: *ngFor TRADICIONAL === -->
+
+    </div>
+</main>

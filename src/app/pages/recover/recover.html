@@ -1,0 +1,42 @@
+<main class="container my-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12">
+            <div class="card login-card">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <h2>RECUPERAR CONTRASEÑA</h2>
+                    </div>
+
+                    <form [formGroup]="formRecover" (ngSubmit)="recuperar()">
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">CORREO ELECTRÓNICO</label>
+                            <input type="email" id="email" class="form-control" formControlName="email"
+                                [class.is-invalid]="formRecover.get('email')?.touched && formRecover.get('email')?.invalid" />
+
+                            <div class="invalid-feedback" *ngIf="formRecover.get('email')?.errors?.['required']">
+                                El correo es obligatorio.
+                            </div>
+                            <div class="invalid-feedback" *ngIf="formRecover.get('email')?.errors?.['email']">
+                                El formato del correo no es válido.
+                            </div>
+                        </div>
+
+                        <!-- Mensajes -->
+                        <div *ngIf="mensaje" class="alert alert-success text-center">{{ mensaje }}</div>
+                        <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="submit" class="btn btn-outline-primary"
+                                [disabled]="formRecover.invalid">RECUPERAR</button>
+                            <button type="button" class="btn btn-outline-secondary" (click)="limpiar()"><i class="bi bi-trash"></i></button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

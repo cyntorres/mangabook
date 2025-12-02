@@ -1,0 +1,52 @@
+/* 1. ESTILOS BASE DEL HERO UNIT */
+.hero-gachiakuta {
+    background-image: url('/assets/img/PORTADA_2.png'); /* Ruta a tu imagen */
+    background-size: cover;
+    background-position: center 20%; /* Ajustamos la posición vertical */
+    background-repeat: no-repeat;
+    height: 400px; /* Altura para el impacto */
+    
+    /* Eliminamos el background-color oscuro, los filtros de brillo/saturación y blend-mode */
+    background-color: transparent; 
+    filter: none;
+    
+    /* Le damos un borde redondeado y sombra para que se separe de la página */
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    overflow: hidden; /* Importante para que la imagen respete el borde */
+}
+
+/* 2. ESTILO DEL TÍTULO */
+.hero-gachiakuta h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: white; /* Color del texto */
+    
+    /* Sombra del texto: CLAVE para la legibilidad sobre fondos complejos */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 1), 0 0 5px rgba(0, 0, 0, 0.8); 
+    /* Esta doble sombra negra hace que el texto parezca flotar y sea legible */
+}
+
+/* 3. ESTILO DEL CONTENEDOR DEL TEXTO (¡Lo simplificamos!) */
+.text-overlay {
+    /* Eliminamos el fondo semitransparente, el desenfoque y el borde. */
+    background-color: transparent; 
+    backdrop-filter: none;
+    border: none;
+    padding: 0; /* Quitamos el padding extra */
+}
+
+/* 4. ESTILO DEL BOTÓN */
+.btn-descubre {
+    border-radius: 30px;
+    padding: 8px 20px;
+    transition: all 0.3s;
+    border: 1px solid white; /* Borde sutil blanco */
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente para destacarlo */
+}
+.btn-descubre:hover {
+    background-color: white !important;
+    color: black !important;
+    border-color: white !important;
+}

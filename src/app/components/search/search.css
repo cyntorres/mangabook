@@ -1,0 +1,15 @@
+.search-input {
+    border-radius: 30px;
+    padding: 8px 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #000000;
+    box-shadow: none;
+}
+
+.search-icon{
+    border-radius: 30px;
+}

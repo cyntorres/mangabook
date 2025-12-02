@@ -1,0 +1,153 @@
+:root {
+  --primary: #0070f3;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #111;
+  --background: #ffffff;
+  --foreground: #111;
+  --card: #ffffff;
+  --card-foreground: #111;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #0070f3;
+  --radius: 0.5rem;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.card {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  border-color: var(--border);
+}
+
+.nav-tabs .nav-link {
+  color: var(--foreground);
+  border: none;
+  padding: 1rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--primary);
+  background: var(--secondary);
+  border-radius: var(--radius);
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  background: var(--secondary);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.form-control, .form-select {
+  border-color: var(--input);
+  border-radius: var(--radius);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.1);
+}
+
+.btn {
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.upload-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--primary);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.skill-tags .badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.experience-entry, .education-entry {
+  transition: all 0.3s ease;
+}
+
+.experience-entry:hover, .education-entry:hover {
+  box-shadow: var(--shadow);
+}
+
+.form-switch .form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.navbar {
+  background-color: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.navbar-brand img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.dropdown-menu {
+  border-color: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.dropdown-item:hover {
+  background-color: var(--secondary);
+}
+
+footer {
+  background-color: var(--card);
+}
+
+footer a:hover {
+  color: var(--primary) !important;
+}
+
+.form-control {
+  text-transform: uppercase;
+}
+
+.table-hover > tbody > tr:hover {
+    --bs-table-bg-hover: #f7f9fc; 
+
+}
+
+.product-thumb {
+    width: 50px; /* Tamaño ligeramente más grande y cuadrado para mejor vista */
+    height: 50px;
+    object-fit: cover; /* Asegura que la imagen no se distorsione */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    border: 1px solid #f0f0f0; /* Borde muy claro, casi invisible */
+    transition: transform 0.2s;
+}
+
+/* Eliminar el borde de las miniaturas para un look más limpio */
+.img-thumbnail {
+    border: none !important; 
+    padding: 0;
+}
+
+/* Efecto sutil al pasar el ratón sobre la miniatura */
+.product-thumb:hover {
+    transform: scale(1.05);
+}
+
+.table td, .table th {
+  text-transform: uppercase;
+}
