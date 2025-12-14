@@ -1,24 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Productos, Producto } from '../services/productos';
+
 import Swal from 'sweetalert2';
-
-/**
- * @interface Producto
- * @description
- * Define la estructura de datos que debe tener cada producto en el inventario.
- */
-interface Producto {
-  id: number;
-  nombre: string;
-  categoria: string;
-  precio: number;
-  imagen: string;
-  stock: number;
-}
-
-const PRODUCTOS_PANEL_KEY = 'productos_admin_list';
-
 /**
  * @component Panel
  * @description
@@ -35,11 +20,29 @@ const PRODUCTOS_PANEL_KEY = 'productos_admin_list';
 
 export class Panel implements OnInit {
 
+  /**
+   * Arreglo donde almacenamos la lista de productos.
+   * se llena con el GET de GitHub Pages.
+   * se puede modificar mediante CRUD simulado.
+   */
   products: Producto[] = [];
+
   newProduct: Producto = this.getEmptyProduct();
+
+  /**
+  * Flag que indica si estamos editando.
+  * false → creando una nueva preventa
+  * true → modificando una existente
+  */
   isEditMode: boolean = false;
 
-  constructor() { }
+  /**
+  * Clave para almacenar datos en localStorage.
+  * Así mantenemos los cambios aunque el usuario recargue la página.
+  */
+  private readonly STORAGE_KEY = 'productos_admin_list';
+
+  constructor(private productos: Productos) { }
 
   /**
    * @method ngOnInit
@@ -48,30 +51,57 @@ export class Panel implements OnInit {
    * en LocalStorage al inicio.
    */
   ngOnInit(): void {
-    this.loadProductsFromStorage();
+    this.obtenerProductosLocalStorage();
   }
 
   /**
-   * @method loadProductsFromStorage
+   * @method obtenerProductosLocalStorage
    * @description
    * Recupera el arreglo de productos desde LocalStorage y lo asigna a la propiedad 'products'.
-   * Si no existe data, carga datos iniciales.
+   * Si no existe data, carga datos guardados en el JSON de GitHub Pages
    * @private
    */
-  private loadProductsFromStorage(): void {
-    const data = localStorage.getItem(PRODUCTOS_PANEL_KEY);
-    this.products = data ? JSON.parse(data) : this.initialData();
+  private obtenerProductosLocalStorage(): void {
+    const data = localStorage.getItem(this.STORAGE_KEY);
+
+    if (data) {
+      // Si hay data en localStorage, la cargamos (esto ya funciona bien)
+      this.products = JSON.parse(data) as Producto[];
+    } else {
+
+      // ⭐ Semana 7: Obtener preventas desde GitHub Pages
+      this.productos.getProductos().subscribe({
+        next: (data) => {
+          /**
+           * IMPORTANTE:
+           * La API NO trae las CATEGORÍAS
+           * En ese caso, la agregamos como string vacío
+           * para permitir que el CRUD simulado funcione correctamente.
+           */
+          this.products = data.map(p => ({
+            ...p,
+            categoria: p.categoria ?? '' 
+          }));
+
+          // Guardamos la lista inicial en localStorage
+          this.guardarEnLocalStorage();
+        },
+        error: (err) => {
+          console.error('Error al obtener preventas desde GitHub Pages:', err);
+        }
+      });
+    }
   }
 
   /**
-   * @method saveProductsToStorage
-   * @description
-   * Guarda el arreglo actual de productos ('this.products') en LocalStorage.
-   * Se llama después de cada operación de CRUD (agregar, editar, eliminar).
-   * @private
-   */
-  private saveProductsToStorage(): void {
-    localStorage.setItem(PRODUCTOS_PANEL_KEY, JSON.stringify(this.products));
+ * @method guardarEnLocalStorage
+ * @description
+ * Guarda el arreglo actual de productos ('this.products') en LocalStorage.
+ * Se llama después de cada operación de CRUD (agregar, editar, eliminar).
+ * @private
+ */
+  private guardarEnLocalStorage(): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.products));
   }
 
   /**
@@ -100,20 +130,6 @@ export class Panel implements OnInit {
   }
 
   /**
-   * @method initialData
-   * @description
-   * Proporciona un conjunto inicial de productos si LocalStorage está vacío.
-   * @returns {Producto[]} Un arreglo de productos iniciales.
-   * @private
-   */
-  private initialData(): Producto[] {
-    return [
-      { id: 1, nombre: 'MILES MORALES VOL.01', categoria: 'Comics', precio: 25900, imagen: 'assets/img/miles_morales.jpg', stock: 10 },
-      { id: 2, nombre: 'SCARLET WITCH VOL.01', categoria: 'Comics', precio: 11900, imagen: 'assets/img/bruja 1.png', stock: 5 },
-    ];
-  }
-
-  /**
    * @method onSubmit
    * @description
    * Maneja el envío del formulario. Llama a la lógica de edición o a la lógica de adición,
@@ -131,7 +147,7 @@ export class Panel implements OnInit {
       }
 
       //Guarda el nuevo estado en LocalStorage.
-      this.saveProductsToStorage();
+      this.guardarEnLocalStorage();
 
       //Reinicia el modo de edición y limpia el formulario.
       this.onCancelEdit(); // Reutilizamos la función para resetear el estado y el formulario
@@ -152,7 +168,7 @@ export class Panel implements OnInit {
     } else {
       this.newProduct.id = this.getNextId();
       this.products = [this.newProduct, ...this.products];
-      this.saveProductsToStorage();
+      this.guardarEnLocalStorage();
 
       Swal.fire({
         icon: 'success',
@@ -236,7 +252,7 @@ export class Panel implements OnInit {
         // Procede con la eliminación
         this.products.splice(index, 1);
         this.products = [...this.products]; // Forzar la detección de cambios
-        this.saveProductsToStorage();
+        this.guardarEnLocalStorage();
 
         //Muestra un mensaje de éxito
         Swal.fire({

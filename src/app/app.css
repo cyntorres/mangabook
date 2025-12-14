@@ -1,0 +1,22 @@
+/* Este código es CRUCIAL para el Sticky Footer */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+app-root {
+    /* 1. Habilitar Flexbox en el contenedor principal */
+    display: flex;         
+    /* 2. Organizar los elementos verticalmente */
+    flex-direction: column;
+    /* 3. Asegurar que ocupe al menos toda la altura de la ventana */
+    min-height: 100vh;      
+}
+
+/* El main es el elemento que debe crecer */
+.content-flex {
+    /* 4. ¡LA LÍNEA MÁGICA! Hace que el main absorba todo el espacio sobrante */
+    flex-grow: 1; 
+}

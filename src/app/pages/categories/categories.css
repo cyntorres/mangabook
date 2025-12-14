@@ -1,22 +1,29 @@
+/* CLASE A MODIFICAR */
 .img-container {
-  overflow: hidden;
-  height: 250px; /* Altura fija para todas las imágenes */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f8f9fa;
-  position: relative;
+    overflow: hidden;
+    /* ELIMINAR O COMENTAR: height: 250px; */ 
+    /* Si lo mantienes, la imagen completa aparecerá, pero habrá espacio blanco alrededor. 
+       Para mejor responsividad sin trucos, mantenlo solo si todas las imágenes tienen la misma proporción. */
+    height: 250px; /* <--- Mantenemos la altura fija como punto de partida */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    position: relative;
 }
 
+/* CLASE A MODIFICAR */
 .webtoon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease-in-out;
+    width: 100%;
+    height: 100%;
+    /* CAMBIO CLAVE: Cambiamos 'cover' a 'contain' */
+    object-fit: contain; 
+    transition: transform 0.4s ease-in-out;
 }
 
 .product-card-angular:hover .webtoon-img {
-  transform: scale(1.05); /* Efecto de zoom al 105% */
+    /* Mantenemos el zoom, aunque puede ser menos notorio con 'contain' */
+    transform: scale(1.05); 
 }
 
 .card-body-custom {

@@ -1,0 +1,754 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>mangabook documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">mangabook documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  Producto</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/panel/panel.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Define la estructura de datos que debe tener cada producto en el inventario.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#categoria" 
+>
+                                            categoria
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#imagen" 
+>
+                                            imagen
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#nombre" 
+>
+                                            nombre
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#precio" 
+>
+                                            precio
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#stock" 
+>
+                                            stock
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="categoria"></a>
+                                        <span class="name "><b>categoria</b>
+                                            <a href="#categoria">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>categoria:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="imagen"></a>
+                                        <span class="name "><b>imagen</b>
+                                            <a href="#imagen">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>imagen:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="nombre"></a>
+                                        <span class="name "><b>nombre</b>
+                                            <a href="#nombre">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>nombre:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="precio"></a>
+                                        <span class="name "><b>precio</b>
+                                            <a href="#precio">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>precio:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="stock"></a>
+                                        <span class="name "><b>stock</b>
+                                            <a href="#stock">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>stock:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import Swal from &#x27;sweetalert2&#x27;;
+
+/**
+ * @interface Producto
+ * @description
+ * Define la estructura de datos que debe tener cada producto en el inventario.
+ */
+interface Producto {
+  id: number;
+  nombre: string;
+  categoria: string;
+  precio: number;
+  imagen: string;
+  stock: number;
+}
+
+const PRODUCTOS_PANEL_KEY &#x3D; &#x27;productos_admin_list&#x27;;
+
+/**
+ * @component Panel
+ * @description
+ * Componente principal para la gestión del inventario (CRUD). Permite al administrador
+ * agregar, editar, eliminar y visualizar productos utilizando LocalStorage para la persistencia.
+ */
+@Component({
+  selector: &#x27;app-panel&#x27;,
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: &#x27;./panel.html&#x27;,
+  styleUrl: &#x27;./panel.css&#x27;,
+})
+
+export class Panel implements OnInit {
+
+  products: Producto[] &#x3D; [];
+  newProduct: Producto &#x3D; this.getEmptyProduct();
+  isEditMode: boolean &#x3D; false;
+
+  constructor() { }
+
+  /**
+   * @method ngOnInit
+   * @description
+   * Hook de inicialización del componente. Carga la lista de productos almacenados
+   * en LocalStorage al inicio.
+   */
+  ngOnInit(): void {
+    this.loadProductsFromStorage();
+  }
+
+  /**
+   * @method loadProductsFromStorage
+   * @description
+   * Recupera el arreglo de productos desde LocalStorage y lo asigna a la propiedad &#x27;products&#x27;.
+   * Si no existe data, carga datos iniciales.
+   * @private
+   */
+  private loadProductsFromStorage(): void {
+    const data &#x3D; localStorage.getItem(PRODUCTOS_PANEL_KEY);
+    this.products &#x3D; data ? JSON.parse(data) : this.initialData();
+  }
+
+  /**
+   * @method saveProductsToStorage
+   * @description
+   * Guarda el arreglo actual de productos (&#x27;this.products&#x27;) en LocalStorage.
+   * Se llama después de cada operación de CRUD (agregar, editar, eliminar).
+   * @private
+   */
+  private saveProductsToStorage(): void {
+    localStorage.setItem(PRODUCTOS_PANEL_KEY, JSON.stringify(this.products));
+  }
+
+  /**
+   * @method getEmptyProduct
+   * @description
+   * Genera una instancia vacía del objeto Producto para resetear el formulario.
+   * @returns {Producto} Un objeto Producto con valores por defecto.
+   * @private
+   */
+  private getEmptyProduct(): Producto {
+    return { id: 0, nombre: &#x27;&#x27;, categoria: &#x27;&#x27;, precio: 0, imagen: &#x27;&#x27;, stock: 0 };
+  }
+
+  /**
+   * @method getNextId
+   * @description
+   * Calcula el siguiente ID disponible buscando el máximo ID actual en la lista y sumándole 1.
+   * @returns {number} El nuevo ID único.
+   * @private
+   */
+  private getNextId(): number {
+    const maxId &#x3D; this.products.length &gt; 0
+      ? Math.max(...this.products.map(p &#x3D;&gt; p.id))
+      : 0;
+    return maxId + 1;
+  }
+
+  /**
+   * @method initialData
+   * @description
+   * Proporciona un conjunto inicial de productos si LocalStorage está vacío.
+   * @returns {Producto[]} Un arreglo de productos iniciales.
+   * @private
+   */
+  private initialData(): Producto[] {
+    return [
+      { id: 1, nombre: &#x27;MILES MORALES VOL.01&#x27;, categoria: &#x27;Comics&#x27;, precio: 25900, imagen: &#x27;assets/img/miles_morales.jpg&#x27;, stock: 10 },
+      { id: 2, nombre: &#x27;SCARLET WITCH VOL.01&#x27;, categoria: &#x27;Comics&#x27;, precio: 11900, imagen: &#x27;assets/img/bruja 1.png&#x27;, stock: 5 },
+    ];
+  }
+
+  /**
+   * @method onSubmit
+   * @description
+   * Maneja el envío del formulario. Llama a la lógica de edición o a la lógica de adición,
+   * basándose en el estado de &#x27;isEditMode&#x27;. Muestra alertas Swal de éxito.
+   */
+  onSubmit(): void {
+    if (this.isEditMode) {
+
+      //Busca el índice del producto original en el array usando el ID.
+      const index &#x3D; this.products.findIndex(p &#x3D;&gt; p.id &#x3D;&#x3D;&#x3D; this.newProduct.id);
+
+      if (index !&#x3D;&#x3D; -1) {
+        //Reemplaza el producto antiguo con el objeto &#x27;newProduct&#x27; editado.
+        this.products[index] &#x3D; this.newProduct;
+      }
+
+      //Guarda el nuevo estado en LocalStorage.
+      this.saveProductsToStorage();
+
+      //Reinicia el modo de edición y limpia el formulario.
+      this.onCancelEdit(); // Reutilizamos la función para resetear el estado y el formulario
+      this.isEditMode &#x3D; false;
+
+      Swal.fire({
+        icon: &#x27;success&#x27;,
+        title: &#x27;¡Cambios Guardados!&#x27;,
+        text: &#x27;El producto ha sido actualizado exitosamente.&#x27;,
+        confirmButtonText: &#x27;Aceptar&#x27;,
+        customClass: {
+          confirmButton: &#x27;btn btn-primary&#x27;,
+        },
+        timer: 5000,
+        timerProgressBar: true
+      });
+
+    } else {
+      this.newProduct.id &#x3D; this.getNextId();
+      this.products &#x3D; [this.newProduct, ...this.products];
+      this.saveProductsToStorage();
+
+      Swal.fire({
+        icon: &#x27;success&#x27;,
+        title: &#x27;¡Producto Agregado!&#x27;,
+        text: &#x60;&quot;El producto ${this.newProduct.nombre}&quot; ha sido añadido a la lista.&#x60;,
+        confirmButtonText: &#x27;Aceptar&#x27;,
+        customClass: {
+          confirmButton: &#x27;btn btn-primary&#x27;,
+        },
+        timer: 5000,
+        timerProgressBar: true
+      });
+
+      this.newProduct &#x3D; this.getEmptyProduct();
+    }
+  }
+
+  /**
+   * @method onEdit
+   * @description
+   * Prepara el formulario para la edición. Copia el producto seleccionado al objeto &#x27;newProduct&#x27;
+   * y activa el modo de edición.
+   * @param {Producto} producto - El producto que se va a editar.
+   */
+  onEdit(producto: Producto): void {
+    //Crea una COPIA del producto para evitar modificar el array original antes de Guardar.
+    this.newProduct &#x3D; { ...producto };
+
+    //Activa el modo de edición.
+    this.isEditMode &#x3D; true;
+  }
+
+  /**
+   * @method onCancelEdit
+   * @description
+   * Cancela la operación de edición, resetea el formulario y el modo de edición. Muestra una alerta informativa.
+   */
+  onCancelEdit(): void {
+    //Apaga el modo de edición. Esto cambia el color/texto del encabezado y botón.
+    this.isEditMode &#x3D; false;
+
+    //Limpia el objeto enlazado al formulario (newProduct).
+    this.newProduct &#x3D; this.getEmptyProduct();
+
+    //Mostrar un mensaje de que la edición fue cancelada.
+    Swal.fire({
+      icon: &#x27;info&#x27;,
+      title: &#x27;¡La edición fue cancelada!&#x27;,
+      text: &#x27;El formulario ha sido restablecido.&#x27;,
+      confirmButtonText: &#x27;Aceptar&#x27;,
+      customClass: {
+        confirmButton: &#x27;btn btn-primary&#x27;,
+      },
+      timer: 5000,
+      timerProgressBar: true
+    });
+  }
+
+  /**
+   * @method onDelete
+   * @description
+   * Muestra una alerta de confirmación antes de eliminar el producto. Si se confirma,
+   * elimina el producto del array y actualiza LocalStorage.
+   * @param {number} index - El índice del producto a eliminar en el array &#x27;products&#x27;.
+   */
+  onDelete(index: number): void {
+    const productoAEliminar &#x3D; this.products[index];
+
+    //Pide confirmación antes de eliminar
+    Swal.fire({
+      title: &#x60;¿Desea eliminar el producto &quot;${productoAEliminar.nombre}&quot;?&#x60;,
+      text: &quot;¡Esta acción es irreversible!&quot;,
+      icon: &#x27;warning&#x27;,
+      showCancelButton: true,
+      confirmButtonColor: &#x27;#d33&#x27;,
+      cancelButtonColor: &#x27;#3085d6&#x27;,
+      confirmButtonText: &#x27;Sí, ¡Eliminar!&#x27;,
+      cancelButtonText: &#x27;Cancelar&#x27;
+    }).then((result: any) &#x3D;&gt; {
+      if (result.isConfirmed) {
+        // Procede con la eliminación
+        this.products.splice(index, 1);
+        this.products &#x3D; [...this.products]; // Forzar la detección de cambios
+        this.saveProductsToStorage();
+
+        //Muestra un mensaje de éxito
+        Swal.fire({
+          icon: &#x27;success&#x27;,
+          title: &#x27;¡Eliminado!&#x27;,
+          text: &#x27;El producto ha sido eliminado&#x27;,
+          confirmButtonText: &#x27;Aceptar&#x27;,
+          customClass: {
+            confirmButton: &#x27;btn btn-primary&#x27;,
+          },
+          timer: 5000,
+          timerProgressBar: true
+        });
+      }
+    });
+  }
+}</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Producto.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

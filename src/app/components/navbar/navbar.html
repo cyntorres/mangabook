@@ -33,7 +33,7 @@
 
                 <!-- SI NO HAY SESIÓN ACTIVA ESCONDE LOS NAV-ITEM DE SESIÓN Y AÑADE ESTOS -->
                 <ng-container *ngIf="!sesion?.logueado">
-                    <li class="nav-item"><a class="nav-link" routerLink="/registro">REGISTRO</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" routerLink="/registro">REGISTRO</a></li> -->
                     <li class="nav-item"><a class="nav-link" routerLink="/login">INICIAR SESIÓN</a></li>
                 </ng-container>
             </ul>

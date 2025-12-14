@@ -86,7 +86,8 @@
             
             <!-- BOTONES -->
             <div class="d-flex justify-content-center gap-3">
-              <button type="submit" class="btn btn-outline-primary" [disabled]="formRegistro.invalid">REGISTRARSE</button>
+              <!-- <button type="submit" class="btn btn-outline-primary" [disabled]="formRegistro.invalid">REGISTRARSE</button> -->
+              <button type="submit" class="btn btn-danger btn-lg rounded-pill" [disabled]="formRegistro.invalid">REGISTRARSE</button>
               <button type="button" class="btn btn-outline-secondary" (click)="limpiar()"><i class="bi bi-trash"></i></button>
             </div>
           </form>

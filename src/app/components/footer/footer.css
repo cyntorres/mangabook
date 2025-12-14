@@ -1,0 +1,127 @@
+/*
+  =======================================
+  0. REGLAS PARA EL STICKY FOOTER (FLEXBOX)
+  =======================================
+*/
+html, body {
+    /* 1. Asegura que la altura sea el 100% de la ventana visible */
+    height: 100%;
+}
+
+body {
+    /* 2. Habilita Flexbox y lo organiza en columna */
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. CLASE NECESARIA: Esto empujará el footer hacia abajo. 
+   DEBES AÑADIR LA CLASE 'content-wrap' al <div> que envuelve tu <main> */
+.content-wrap {
+    flex: 1 0 auto; /* Permite que este contenedor crezca y ocupe todo el espacio restante */
+}
+
+/*
+  =======================================
+  Estilos del Footer de MANGABOOK (Tus estilos originales)
+  =======================================
+*/
+
+/* 1. Contenedor principal del Footer */
+.footer {
+    /* Mantener el fondo claro que ya tienes, pero suavizarlo. */
+    background: #f8f9fa;
+    padding-top: 3rem !important;
+    /* Más espacio arriba */
+    padding-bottom: 3rem !important;
+    /* Más espacio abajo para un aspecto más premium */
+    border-top: 1px solid #e9ecef;
+    /* Separación sutil del contenido principal */
+    flex-shrink: 0; /* Asegura que el footer no se encoja cuando el contenido es corto */
+    /* ELIMINADA: La 'SOLUCIÓN AGRESIVA' (position: absolute; bottom: 0;) */
+}
+
+/* 2. Encabezados y Links */
+.footer h5 {
+    color: #343a40;
+    /* Color oscuro para los títulos */
+    margin-bottom: 1.5rem;
+    /* Separación clara entre título y contenido */
+}
+
+/* 3. Estilos generales de los Links (Quick Links y Copyright) */
+.footer a,
+.footer .text-secondary {
+    color: #6c757d !important;
+    /* Color gris suave */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 0.95rem;
+    /* Ligeramente más pequeños */
+}
+
+.footer a:hover {
+    color: #dc3545 !important;
+    /* Rojo al pasar el ratón para los links de navegación */
+    text-decoration: none;
+}
+
+/* 4. Estilos de la lista de CATEGORÍAS */
+.footer .list-unstyled .nav-link {
+    padding: 0.3rem 0;
+    /* Espacio vertical para separar los ítems de la lista */
+    display: inline-block;
+    /* Asegura que el padding funcione bien */
+}
+
+
+/* 5. Íconos de Redes Sociales */
+.social-icons a {
+    color: #dc3545 !important;
+    /* 🌟 ¡Color Rojo VIVO! (Rojo de Bootstrap) */
+    font-size: 1.6rem;
+    /* Íconos más grandes */
+    transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    margin-right: 1.5rem !important;
+    /* Aumenta la separación entre los íconos */
+}
+
+.social-icons a:hover {
+    color: #c82333 !important;
+    /* Rojo más oscuro al pasar el ratón */
+    transform: translateY(-3px);
+    /* Pequeño efecto de elevación */
+}
+
+/* 6. Línea Divisoria (Horizontal Rule) */
+.footer hr {
+    border-top: 1px solid #dee2e6;
+    opacity: 0.7;
+    margin-top: 2.5rem !important;
+    /* Más separación entre secciones */
+    margin-bottom: 2rem !important;
+}
+
+/* 7. Columna de Derechos de Autor (Bottom Section) */
+.footer .col-md-6 p {
+    font-size: 0.85rem;
+    /* Fuente más pequeña para el copyright */
+}
+
+/* 8. Media Query (Responsividad) */
+@media (max-width: 768px) {
+
+    /* Aumenta la separación entre las columnas en móviles */
+    .footer .row>div {
+        margin-bottom: 2rem;
+    }
+
+    /* El último elemento no necesita margen inferior extra */
+    .footer .row>div:last-child {
+        margin-bottom: 0;
+    }
+
+    .footer .col-md-6.text-md-end {
+        text-align: start !important;
+        /* Alinea los links a la izquierda en móvil */
+    }
+}

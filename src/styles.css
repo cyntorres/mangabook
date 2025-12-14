@@ -1,0 +1,5 @@
+/* Nuevo CSS a probar en app.css o styles.css */
+app-footer {
+    /* Esto hará que el footer se separe lo más posible de los elementos anteriores (Navbar y Main) */
+    margin-top: auto; 
+}

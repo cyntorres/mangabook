@@ -24,8 +24,10 @@
                 <label for="password" class="form-label">CONTRASEÑA</label>
 
                 <div class="input-group">
-                  <input [type]="mostrarPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password" [class.is-invalid]="formLogin.get('password')?.touched && formLogin.get('password')?.invalid" />
-                  <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()">{{ mostrarPassword ? 'Ocultar' : 'Mostrar' }}</button>
+                  <input [type]="mostrarPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password" 
+                  [class.is-invalid]="formLogin.get('password')?.touched && formLogin.get('password')?.invalid"/>
+                  
+                  <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()"><i class="bi" [class.bi-eye-slash-fill]="!mostrarPassword" [class.bi-eye-fill]="mostrarPassword"></i></button>
                 </div>
                 
                 <div class="invalid-feedback" *ngIf="formLogin.get('password')?.errors?.['required']">La contraseña es obligatoria.</div>
@@ -33,20 +35,30 @@
 
               <!-- BOTONES -->
               <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary mt-3" [disabled]="formLogin.invalid">INGRESAR</button>
-                <button type="button" class="btn btn-outline-secondary mt-3" (click)="limpiar()"><i class="bi bi-trash"></i></button>
+                <!-- <button type="submit" class="btn btn-primary mt-3" [disabled]="formLogin.invalid">INGRESAR</button> -->
+                <a routerLink="/recuperar">¿OLVIDASTE TU CONTRASEÑA?</a>
+                <!-- <button type="button" class="btn btn-outline-secondary mt-3" (click)="limpiar()"><i class="bi bi-trash"></i></button> -->
                 
-                <a routerLink="/registro" class="btn btn-outline-secondary mt-3">REGISTRARSE</a>
+                <!-- <a routerLink="/registro" class="btn btn-outline-secondary mt-3">REGISTRARSE</a> -->
               </div>
 
               <!-- ENLACE PARA RECUPERAR CONTRASEÑA -->
               <div class="text-center mt-4">
-                <a routerLink="/recuperar">¿OLVIDASTE TU CONTRASEÑA?</a>
+                <!-- <a routerLink="/recuperar">¿OLVIDASTE TU CONTRASEÑA?</a> -->
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-danger btn-lg rounded-pill" [disabled]="formLogin.invalid">INICIAR SESIÓN</button>
               </div>
 
             </form>
+
+            <div class="text-center mt-5">
+              <small>¿TODAVÍA NO TIENES UNA CUENTA? <a routerLink="/registro" class="text-danger fw-bold text-decoration-none">REGÍSTRATE AHORA</a></small>
+            </div>
           </div>
         </div>
     </div>
   </div>
 </main>
+
