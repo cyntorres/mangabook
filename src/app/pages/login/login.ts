@@ -58,7 +58,7 @@ export class Login {
         tipo: usuario.tipo || 'usuario'
       }));
 
-      window.location.assign(usuario.tipo === 'admin' ? '/admin' : '/perfil');
+      window.location.assign(usuario.tipo === 'admin' ? '/panel' : '/perfil');
 
     } else {
 
