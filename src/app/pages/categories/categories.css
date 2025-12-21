@@ -1,24 +1,20 @@
-/* CLASE A MODIFICAR */
 .img-container {
     overflow: hidden;
-    /* ELIMINAR O COMENTAR: height: 250px; */ 
-    /* Si lo mantienes, la imagen completa aparecerá, pero habrá espacio blanco alrededor. 
-       Para mejor responsividad sin trucos, mantenlo solo si todas las imágenes tienen la misma proporción. */
-    height: 250px; /* <--- Mantenemos la altura fija como punto de partida */
+    height: 250px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f8f9fa;
+    /* CAMBIO 1: Fondo blanco para que no se note la separación */
+    background-color: #ffffff; 
     position: relative;
+    /* CAMBIO 2: Opcional - Un pequeño padding para que la imagen no toque los bordes */
+    padding: 5px;
 }
 
-/* CLASE A MODIFICAR */
 .webtoon-img {
     width: 100%;
     height: 100%;
-    /* CAMBIO CLAVE: Cambiamos 'cover' a 'contain' */
     object-fit: contain; 
-    transition: transform 0.4s ease-in-out;
 }
 
 .product-card-angular:hover .webtoon-img {

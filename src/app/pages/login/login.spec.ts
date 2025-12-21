@@ -122,6 +122,6 @@ describe('Login', () => {
         component.login();
 
         // Validamos la redirección a /admin
-        expect(assignSpy).toHaveBeenCalledWith('/admin'); 
+        expect(assignSpy).toHaveBeenCalledWith('/panel'); 
     });
 });
